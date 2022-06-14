@@ -33,7 +33,7 @@
 #include "lte/gateway/c/core/oai/include/mme_app_ue_context.h"
 #include "lte/gateway/c/core/oai/lib/3gpp/3gpp_29.274.h"
 #include "lte/gateway/c/core/oai/lib/bstr/bstrlib.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_bearer_context.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_bearer_context.hpp"
 #include "lte/gateway/c/core/oai/tasks/nas/esm/esm_data.h"
 
 static void mme_app_bearer_context_init(bearer_context_t* const bearer_context);

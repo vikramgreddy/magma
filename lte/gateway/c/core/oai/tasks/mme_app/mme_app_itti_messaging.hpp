@@ -36,10 +36,10 @@
 #include "lte/gateway/c/core/oai/lib/itti/itti_types.h"
 #include "lte/gateway/c/core/oai/include/mme_app_desc.h"
 #include "lte/gateway/c/core/oai/include/mme_app_ue_context.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_procedures.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_procedures.hpp"
 #include "lte/gateway/c/core/oai/include/s1ap_messages_types.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.hpp"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.hpp"
 
 void mme_app_itti_ue_context_release(struct ue_mm_context_s* ue_context_p,
                                      enum s1cause cause);

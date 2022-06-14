@@ -66,8 +66,8 @@
 #include "lte/gateway/c/core/oai/include/mme_config.h"
 #include "lte/gateway/c/core/oai/include/mme_events.hpp"
 #include "lte/gateway/c/core/oai/lib/bstr/bstrlib.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_itti_messaging.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.hpp"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_itti_messaging.hpp"
 #include "lte/gateway/c/core/oai/tasks/nas/api/network/nas_message.h"
 #include "lte/gateway/c/core/oai/tasks/nas/nas_procedures.h"
 #include "lte/gateway/c/core/oai/tasks/nas/util/nas_timer.h"
@@ -99,8 +99,8 @@
 #include "lte/gateway/c/core/oai/tasks/nas/ies/EpsNetworkFeatureSupport.h"
 #include "lte/gateway/c/core/oai/include/TrackingAreaIdentity.h"
 #include "lte/gateway/c/core/oai/tasks/nas/ies/TrackingAreaIdentityList.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.hpp"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.hpp"
 
 /****************************************************************************/
 /****************  E X T E R N A L    D E F I N I T I O N S  ****************/

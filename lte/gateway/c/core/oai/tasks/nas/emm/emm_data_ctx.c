@@ -41,7 +41,7 @@
 #include "lte/gateway/c/core/oai/lib/hashtable/hashtable.h"
 #include "lte/gateway/c/core/oai/lib/itti/intertask_interface.h"
 #include "lte/gateway/c/core/oai/lib/secu/secu_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.hpp"
 #include "lte/gateway/c/core/oai/tasks/nas/api/mme/mme_api.h"
 #include "lte/gateway/c/core/oai/tasks/nas/emm/emm_data.h"
 #include "lte/gateway/c/core/oai/tasks/nas/emm/sap/emm_fsm.h"

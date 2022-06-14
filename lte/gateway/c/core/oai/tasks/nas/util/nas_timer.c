@@ -40,7 +40,7 @@
 #include "lte/gateway/c/core/oai/common/log.h"
 #include "lte/gateway/c/core/oai/lib/itti/intertask_interface_types.h"
 #include "lte/gateway/c/core/oai/lib/itti/itti_types.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_timer.hpp"
 #include "lte/gateway/c/core/oai/tasks/nas/util/nas_timer.h"
 
 //------------------------------------------------------------------------------

@@ -17,7 +17,7 @@
 
 /*****************************************************************************
 
-  Source      mme_app_sgs_associated.c
+  Source      mme_app_sgs_la_updated.c
 
   Version
 
@@ -30,14 +30,14 @@
   Author
 
   Description Implements the SGS procedures executed
-        when the SGS state in SGS-associated.
+        when the SGS state in SGS-LA_UPDATE_REQUESTED.
 
 *****************************************************************************/
 
 #include "lte/gateway/c/core/common/common_defs.h"
+#include "lte/gateway/c/core/oai/common/common_types.h"
 #include "lte/gateway/c/core/oai/common/log.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_sgs_fsm.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_sgs_fsm.hpp"
 
 /****************************************************************************/
 /****************  E X T E R N A L    D E F I N I T I O N S  ****************/
@@ -53,10 +53,10 @@
 
 /****************************************************************************
  **                                                                        **
- ** Name:    sgs_associated_handler                                        **
+ ** Name:    sgs_la_update_requested_handler() **
  **                                                                        **
- ** Description: Handles the SGSAP messages for UE while the               **
- **              SGS is in SGS-Associated state.                           **
+ ** Description: Handles the behaviour of the UE in MME while the          **
+ **              SGS is in SGS-LA_UPDATE_REQUEST state.                    **
  **                                                                        **
  ** Inputs:  sgs_evt:   The received SGS event                             **
  **                                                                        **
@@ -64,59 +64,67 @@
  **          Return:    RETURNok, RETURNerror                              **
  **                                                                        **
  ***************************************************************************/
-status_code_e sgs_associated_handler(const sgs_fsm_t* evt) {
-  status_code_e rc = RETURNerror;
+status_code_e sgs_la_update_requested_handler(const sgs_fsm_t* evt) {
   OAILOG_FUNC_IN(LOG_MME_APP);
+  status_code_e rc = RETURNerror;
 
-  if (sgs_fsm_get_status(evt->ue_id, evt->ctx) != SGS_ASSOCIATED) {
-    OAILOG_ERROR(
-        LOG_MME_APP,
-        "SGS not in the SGS_Associated state, UE Id: " MME_UE_S1AP_ID_FMT "\n",
-        evt->ue_id);
+  if (sgs_fsm_get_status(evt->ue_id, evt->ctx) != SGS_LA_UPDATE_REQUESTED) {
+    OAILOG_ERROR(LOG_MME_APP,
+                 "SGS not in the SGS_LA_UPDATE_REQUESTED state for UE "
+                 "Id: " MME_UE_S1AP_ID_FMT "\n",
+                 evt->ue_id);
     OAILOG_FUNC_RETURN(LOG_MME_APP, RETURNerror);
   }
 
   switch (evt->primitive) {
     case _SGS_LOCATION_UPDATE_ACCEPT: {
-      rc = sgs_fsm_associated_loc_updt_acc(evt);
+      rc = sgs_fsm_la_updt_req_loc_updt_acc(evt);
     } break;
 
     case _SGS_LOCATION_UPDATE_REJECT: {
-      rc = sgs_fsm_associated_loc_updt_rej(evt);
+      rc = sgs_fsm_la_updt_req_loc_updt_rej(evt);
     } break;
 
     case _SGS_PAGING_REQUEST: {
-      rc = sgs_handle_associated_paging_request(evt);
+      OAILOG_DEBUG(
+          LOG_MME_APP,
+          "Handle paging request in SGS_LA_UPDATE_REQUESTED state for ue-id :"
+          "" MME_UE_S1AP_ID_FMT " \n",
+          evt->ue_id);
+      rc = RETURNok;
     } break;
 
-    case _SGS_EPS_DETACH_IND: {
+    case _SGS_EPS_DETACH_IND:
       /*
        * SGS EPS Detach procedure successful
        * enter state SGS-NULL.
        */
       rc = sgs_fsm_set_status(evt->ue_id, evt->ctx, SGS_NULL);
-    } break;
+      break;
 
-    case _SGS_SERVICE_ABORT_REQUEST: {
-      rc = sgs_fsm_associated_service_abort_request(evt);
-    } break;
-
-    case _SGS_IMSI_DETACH_IND: {
+    case _SGS_IMSI_DETACH_IND:
       /*
        * SGS IMSI Detach procedure successful
        * enter state SGS-NULL.
        */
       rc = sgs_fsm_set_status(evt->ue_id, evt->ctx, SGS_NULL);
-    } break;
+      break;
 
     case _SGS_RESET_INDICATION: {
-      rc = sgs_fsm_associated_reset_indication(evt);
+      /* No handling required, if Reset indication received in
+       * La-Update-Requested state */
+      OAILOG_DEBUG(LOG_MME_APP,
+                   " Received Reset Indication while SGS context is in "
+                   "La-Update-Requested state for ue_id"
+                   " :%d \n",
+                   evt->ue_id);
+      rc = RETURNok;
     } break;
 
-    default: {
+    default:
       OAILOG_ERROR(LOG_MME_APP, "SGS-FSM   - Primitive is not valid (%d)\n",
                    evt->primitive);
-    } break;
+      break;
   }
   OAILOG_FUNC_RETURN(LOG_MME_APP, rc);
 }

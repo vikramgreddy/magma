@@ -50,8 +50,8 @@
 #include "lte/gateway/c/core/oai/lib/itti/intertask_interface.h"
 #include "lte/gateway/c/core/oai/lib/itti/intertask_interface_types.h"
 #include "lte/gateway/c/core/oai/lib/itti/itti_types.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_sgs_fsm.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.hpp"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_sgs_fsm.hpp"
 #include "lte/gateway/c/core/oai/tasks/nas/api/mme/mme_api.h"
 #include "orc8r/gateway/c/common/service303/MetricsHelpers.hpp"
 

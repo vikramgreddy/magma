@@ -25,7 +25,7 @@
 #include "lte/gateway/c/core/oai/include/mme_app_ue_context.h"
 #include "lte/gateway/c/core/oai/include/s1ap_messages_types.h"
 #include "lte/gateway/c/core/oai/lib/bstr/bstrlib.h"
-#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.h"
+#include "lte/gateway/c/core/oai/tasks/mme_app/mme_app_defs.hpp"
 
 status_code_e mme_app_handle_s1ap_ue_capabilities_ind(
     const itti_s1ap_ue_cap_ind_t* const s1ap_ue_cap_ind_pP) {
